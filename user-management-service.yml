@@ -11,7 +11,7 @@ jwt:
   secret: "aSv9LkJm2Nq7Xt4Yz6Be8Uh3Wf5Rp9Dc4Vg7Kn2Mj5Nx8Qz3Th6Yw9Bs4Hk7"
   expiration: 86400000
 server:
-  port: 9097
+  port: 9098
 logging:
   level:
     org.springframework.security: DEBUG
