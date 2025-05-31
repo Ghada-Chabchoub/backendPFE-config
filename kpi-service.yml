@@ -24,7 +24,7 @@ spring:
               mapping: PlanOfActionEvent:com.example.commonevents.PlanOfActionEvent
   cloud:
     config:
-      enabled: false
+      enabled: true
     discovery:
       enabled: true
 eureka:
