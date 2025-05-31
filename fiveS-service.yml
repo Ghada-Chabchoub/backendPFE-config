@@ -1,0 +1,45 @@
+spring:
+  application:
+    name: fiveS-service
+  datasource:
+    url: jdbc:postgresql://localhost:5432/bd-fiveS
+    username: postgres
+    password: ghada
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+  kafka:
+    bootstrap-servers: kafka:9092
+    producer:
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
+      acks: all
+    topic:
+      name: historical-data
+  cloud:
+    config:
+      enabled: false
+    discovery:
+      enabled: true
+eureka:
+  instance:
+    prefer-ip-address: true
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka
+server:
+  port: 9097
+  ssl:
+    enabled: true
+    key-store-type: PKCS12
+    key-store: file:/C:/Users/Lenovo/Desktop/PFE/backendPFE/shared/keystore.p12
+    key-store-password: ghada123
+    key-alias: myalias
+jwt:
+  secret: aSv9LkJm2Nq7Xt4Yz6Be8Uh3Wf5Rp9Dc4Vg7Kn2Mj5Nx8Qz3Th6Yw9Bs4Hk7
+  expiration: 86400000
+logging:
+  level:
+    org.springframework.security: DEBUG
+    org.springframework.web: DEBUG
