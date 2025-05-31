@@ -1,0 +1,74 @@
+spring:
+  application:
+    name: mailing-service
+  datasource:
+    url: jdbc:postgresql://localhost:5432/bd-mailing
+    username: postgres
+    password: ghada
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+  mail:
+    host: localhost
+    port: 1025
+    username:
+    password:
+    properties:
+      mail.smtp.auth: false
+      mail.smtp.starttls.enable: false
+  kafka:
+    bootstrap-servers: localhost:9092
+    consumer:
+      group-id: mailing-group
+      auto-offset-reset: earliest
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.springframework.kafka.support.serializer.ErrorHandlingDeserializer
+      properties:
+        spring:
+          deserializer:
+            value:
+              delegate:
+                class: org.springframework.kafka.support.serializer.JsonDeserializer
+          json:
+            trusted:
+              packages: com.example.commonevents,com.example.commonevents.*
+            type:
+              mapping: |
+                PlanningCreatedEvent:com.example.commonevents.PlanningCreatedEvent,
+                PlanOfActionEvent:com.example.commonevents.PlanOfActionEvent
+    producer:
+      value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
+      properties:
+        spring:
+          json:
+            add:
+              type:
+                headers: true
+            type:
+              mapping: PlanOfActionEvent:com.example.commonevents.PlanOfActionEvent
+  cloud:
+    config:
+      enabled: true
+    discovery:
+      enabled: true
+eureka:
+  instance:
+    prefer-ip-address: true
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka
+usermanagement:
+  service:
+    url: http://localhost:9094/users
+server:
+  port: 9096
+  ssl:
+    enabled: false
+jwt:
+  secret: aSv9LkJm2Nq7Xt4Yz6Be8Uh3Wf5Rp9Dc4Vg7Kn2Mj5Nx8Qz3Th6Yw9Bs4Hk7
+  expiration: 86400000
+debug: false
+spring:
+  aop:
+    auto: false
