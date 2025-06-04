@@ -38,12 +38,6 @@ usermanagement:
     url: https://localhost:9094/users
 server:
   port: 9098
-  ssl:
-    enabled: true
-    key-store-type: PKCS12
-    key-store: classpath:keystore.p12
-    key-store-password: ghada123
-    key-alias: myalias
 jwt:
   secret: aSv9LkJm2Nq7Xt4Yz6Be8Uh3Wf5Rp9Dc4Vg7Kn2Mj5Nx8Qz3Th6Yw9Bs4Hk7
   expiration: 86400000
