@@ -62,7 +62,9 @@ eureka:
   client:
     service-url:
       defaultZone: http://localhost:8761/eureka
-
+usermanagement:
+  service:
+    url: https://localhost:9094/users
 server:
   port: 9096
   ssl:
