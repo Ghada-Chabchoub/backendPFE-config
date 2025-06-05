@@ -1,7 +1,15 @@
 spring:
   application:
     name: gateway-service
+
   cloud:
+    config:
+      uri: http://localhost:8888
+      fail-fast: true
+
+    discovery:
+      enabled: true
+
     gateway:
       discovery:
         locator:
@@ -17,6 +25,7 @@ spring:
             - Path=/users/**
           filters:
             - StripPrefix=1
+
         - id: planing-service
           uri: lb://PLANING-SERVICE
           predicates:
@@ -24,12 +33,14 @@ spring:
             - Path=/areas/**
           filters:
             - StripPrefix=1
+
         - id: mailing-service
           uri: lb://MAILING-SERVICE
           predicates:
             - Path=/api/email/**
           filters:
             - StripPrefix=1
+
         - id: kpi-service
           uri: lb://KPI-SERVICE
           predicates:
@@ -37,6 +48,7 @@ spring:
             - Path=/api/action-plan/**
           filters:
             - StripPrefix=1
+
         - id: fivee-s-service
           uri: lb://FIVEE-S-SERVICE
           predicates:
@@ -44,17 +56,16 @@ spring:
           filters:
             - StripPrefix=1
 
+server:
+  port: 9099
+
 jwt:
   secret: aSv9LkJm2Nq7Xt4Yz6Be8Uh3Wf5Rp9Dc4Vg7Kn2Mj5Nx8Qz3Th6Yw9Bs4Hk7
   expiration: 86400000
 
-cloud:
-  discovery:
-    enabled: true
-
 eureka:
-  instance:
-    prefer-ip-address: true
   client:
     service-url:
       defaultZone: http://localhost:8761/eureka
+  instance:
+    prefer-ip-address: true
