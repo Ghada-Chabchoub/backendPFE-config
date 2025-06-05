@@ -49,8 +49,6 @@ jwt:
   expiration: 86400000
 
 cloud:
-  config:
-    enabled: true
   discovery:
     enabled: true
 
