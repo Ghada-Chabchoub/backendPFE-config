@@ -10,13 +10,18 @@ spring:
         - id: user-service
           uri: lb://USER-SERVICE
           predicates:
-            - Path=/api/registration/**,/auth/**,/api/client/**,/api/email/**,/users/**
+            - Path=/api/registration/**
+            - Path=/auth/**
+            - Path=/api/client/**
+            - Path=/api/email/**
+            - Path=/users/**
           filters:
             - StripPrefix=1
         - id: planing-service
           uri: lb://PLANING-SERVICE
           predicates:
-            - Path=/planning/**,/areas/**
+            - Path=/planning/**
+            - Path=/areas/**
           filters:
             - StripPrefix=1
         - id: mailing-service
@@ -28,23 +33,27 @@ spring:
         - id: kpi-service
           uri: lb://KPI-SERVICE
           predicates:
-            - Path=/api/kpis/**,/api/action-plan/**
+            - Path=/api/kpis/**
+            - Path=/api/action-plan/**
           filters:
             - StripPrefix=1
-        - id: fivee-service
+        - id: fivee-s-service
           uri: lb://FIVEE-S-SERVICE
           predicates:
             - Path=/api/audits/**
           filters:
             - StripPrefix=1
+
 jwt:
   secret: aSv9LkJm2Nq7Xt4Yz6Be8Uh3Wf5Rp9Dc4Vg7Kn2Mj5Nx8Qz3Th6Yw9Bs4Hk7
   expiration: 86400000
- cloud:
-    config:
-      enabled: true
-    discovery:
-      enabled: true
+
+cloud:
+  config:
+    enabled: true
+  discovery:
+    enabled: true
+
 eureka:
   instance:
     prefer-ip-address: true
